@@ -239,7 +239,7 @@ def main():
 
         # 추이 폐포
         traR = TransitiveClosure(R)
-        print("[추이 폐포 결과] - 정의 기반 알고리즘")
+        print("[추이 폐포 결과 - 정의 기반 알고리즘]")
         PrintMatrix(traR)
         warR = TransitiveClosureWarshall(R)
         print("[추이 폐포 결과 - Warshall 알고리즘]")
