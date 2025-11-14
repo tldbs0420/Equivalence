@@ -94,13 +94,17 @@ def TransitiveClosure(R):
 
 # 추이 폐포 생성 (Warshall 알고리즘)
 def TransitiveClosureWarshall(R):
-    newR = [row[:] for row in R]
+    W = [row[:] for row in R]   # W0
     for k in range(n):
-        for i in range(n):
-            for j in range(n):
-                if newR[i][k] == 1 and newR[k][j] == 1:
-                    newR[i][j] = 1
-    return newR
+        # 2단계: k열, k행에서 1인 위치 찾기
+        P = [i for i in range(n) if W[i][k] == 1]  # col k
+        Q = [j for j in range(n) if W[k][j] == 1]  # row k
+
+        # 3단계: (pi, qj) 자리에 1 쓰기
+        for i in P:
+            for j in Q:
+                W[i][j] = 1
+    return W
 
 # 입력 행렬을 동치로 만드는 함수
 def EquivalenceClosure(R):
