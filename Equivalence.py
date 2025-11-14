@@ -183,7 +183,7 @@ def PrintEquivalenceClasses(R):
 
 def main():
     while(True):
-        print("5×5 관계행렬을 입력하세요 (띄어쓰기로 구분):")
+        print("5 x 5 관계행렬을 입력하세요 (띄어쓰기로 구분 | -1 To Exit ):")
 
         # n * n (5 x 5) 행렬 생성 및 0으로 채워넣기
         R = [[float(0) for _ in range(n)] for _ in range(n)]
