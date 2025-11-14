@@ -251,7 +251,7 @@ def main():
             for i in range(n):
                 for j in range(n):
                     if traR[i][j] != warR[i][j]:
-                        print(f"     위치 ({i+1}, {j+1}): 정의기반={traR[i][j]}, Warshall={R_war[i][j]}")
+                        print(f"     위치 ({i+1}, {j+1}): 정의기반={traR[i][j]}, Warshall={warR[i][j]}")
         PrintProperties(traR)
 
         # 동치 폐포 (반사 → 대칭 → 추이 한 번씩)
