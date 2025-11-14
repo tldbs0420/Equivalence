@@ -154,14 +154,17 @@ def PrintProperties(R):
         print(f"  (사유: ({i},{j})와 ({j},{i}) 값이 다름)")
 
     if (tra):
-        print("추이성 (Transitive): O \n")
+        print("추이성 (Transitive): O")
     else:
         print("추이성 (Transitive): X", end = "")
         reason = FindTransitiveCounterexample(R)
         i,k,j = reason
-        print(f"  (사유: ({i},{k})=1, ({k},{j})=1 인데 ({i},{j})=0) \n")
+        print(f"  (사유: ({i},{k})=1, ({k},{j})=1 인데 ({i},{j})=0)")
 
-    if (ref and sym and tra) : PrintEquivalenceClasses(R)
+    if (ref and sym and tra): 
+        print("관계 행렬이 동치 관계입니다. \n")
+        PrintEquivalenceClasses(R)
+    else : print("관계 행렬이 동치 관계가 아닙니다 \n")
 
 # 동치류 리스트 리턴
 def EquivalenceClass(R, x):
