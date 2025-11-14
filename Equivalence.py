@@ -110,14 +110,14 @@ def TransitiveClosureWarshall(R):
 def EquivalenceClosure(R):
      return TransitiveClosure(SymmetricClosure(ReflexiveClosure(R)))
 
-# 반사 폐포가 아닌 원인 위치 리턴
+# 반사 관계가 아닌 원인 위치 리턴
 def FindReflexiveCounterexample(R):
     for i in range(n):
         if R[i][i] != 1:
             return i+1
     return None
 
-# 대칭 폐포가 아닌 원인 이유 리턴
+# 대칭 관계가 아닌 원인 이유 리턴
 def FindSymmetricCounterexample(R):
     for i in range(n):
         for j in range(n):
@@ -125,7 +125,7 @@ def FindSymmetricCounterexample(R):
                 return (i+1, j+1)
     return None
 
-# 추이 폐포가 아닌 원인 이유 리턴
+# 추이 관계가 아닌 원인 이유 리턴
 def FindTransitiveCounterexample(R):
     for i in range(n):
         for k in range(n):
