@@ -131,6 +131,7 @@ def FindTransitiveCounterexample(R):
                         return (i+1, k+1, j+1)
     return None
 
+# 각 성질 판별
 def PrintProperties(R):
     ref = IsReflexive(R)
     sym = IsSymmetric(R)
@@ -175,7 +176,9 @@ def EquivalenceClass(R, x):
 def PrintEquivalenceClasses(R):
     print("[동치류]")
     for x in A:
-        print(f"  [{x}] = {EquivalenceClass(R, x)}")
+        eq = EquivalenceClass(R, x)
+        contents = ", ".join(str(e) for e in eq)
+        print(f"  [{x}] = {{ {contents} }}")
     print()
 
 def main():
@@ -220,26 +223,26 @@ def main():
         PrintProperties(R)
 
         # 반사 폐포
-        R_ref = ReflexiveClosure(R)
+        refR = ReflexiveClosure(R)
         print("[반사 폐포 결과]")
-        PrintMatrix(R_ref)
-        PrintProperties(R_ref)
+        PrintMatrix(refR)
+        PrintProperties(refR)
 
         # 대칭 폐포
-        R_sym = SymmetricClosure(R)
+        symR = SymmetricClosure(R)
         print("[대칭 폐포 결과]")
-        PrintMatrix(R_sym)
-        PrintProperties(R_sym)
+        PrintMatrix(symR)
+        PrintProperties(symR)
 
         # 추이 폐포
-        R_tra = TransitiveClosure(R)
+        traR = TransitiveClosure(R)
         print("[추이 폐포 결과] - 정의 기반 알고리즘")
-        PrintMatrix(R_tra)
-        R_war = TransitiveClosureWarshall(R)
+        PrintMatrix(traR)
+        warR = TransitiveClosureWarshall(R)
         print("[추이 폐포 결과 - Warshall 알고리즘]")
-        PrintMatrix(R_war)
+        PrintMatrix(warR)
         # 두 결과가 같은지 비교
-        if CompareMatrix(R_tra, R_war):
+        if CompareMatrix(traR, warR):
             print("두 알고리즘의 추이 폐포 결과가 완전히 같습니다.")
         else:
             print("두 알고리즘의 추이 폐포 결과가 서로 다릅니다.")
@@ -247,9 +250,9 @@ def main():
 
             for i in range(n):
                 for j in range(n):
-                    if R_tra[i][j] != R_war[i][j]:
-                        print(f"     위치 ({i+1}, {j+1}): 정의기반={R_tra[i][j]}, Warshall={R_war[i][j]}")
-        PrintProperties(R_tra)
+                    if traR[i][j] != warR[i][j]:
+                        print(f"     위치 ({i+1}, {j+1}): 정의기반={traR[i][j]}, Warshall={R_war[i][j]}")
+        PrintProperties(traR)
 
         # 동치 폐포 (반사 → 대칭 → 추이 한 번씩)
         EQ = EquivalenceClosure(R)
